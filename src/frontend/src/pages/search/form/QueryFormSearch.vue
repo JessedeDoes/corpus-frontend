@@ -5,6 +5,7 @@
 			<li :class="{'active': activePattern==='simple'}" @click.prevent="activePattern='simple'"><a href="#simple" class="querytype">Simple</a></li>
 			<li :class="{'active': activePattern==='extended'}" @click.prevent="activePattern='extended'"><a href="#extended" class="querytype">Extended</a></li>
 			<li :class="{'active': activePattern==='advanced'}" @click.prevent="activePattern='advanced'" v-if="advancedEnabled"><a href="#advanced" class="querytype">Advanced</a></li>
+			<li :class="{'active': activePattern==='concept_search'}" @click.prevent="activePattern='concept'"><a href="#concept" class="querytype">Concepts</a></li>
 			<li :class="{'active': activePattern==='expert'}" @click.prevent="activePattern='expert'"><a href="#expert" class="querytype">Expert</a></li>
 		</ul>
 		<div class="tab-content">
@@ -115,8 +116,12 @@
 				<div id="querybuilder" ref="querybuilder"></div>
 				<button type="button" class="btn btn-default btn-sm" @click="copyAdvancedQuery">Copy to CQL editor</button>
 			</div>
+			<div :class="['tab-pane', {'active': activePattern==='concept'}]" id="concept">
+				<h3>"Concept" search</h3>
+				<textarea id="querybox_concept" class="form-control" name="querybox" rows="7" v-model.lazy="concept"></textarea>
+			</div> 
 			<div :class="['tab-pane', {'active': activePattern==='expert'}]" id="expert">
-				<h3>Corpus Query Language:</h3>
+				<h3>Corpus Query Language (for nerds!):</h3>
 				<textarea id="querybox" class="form-control" name="querybox" rows="7" v-model.lazy="expert"></textarea>
 				<button v-if="advancedEnabled" type="button" class="btn btn-sm btn-default" name="parseQuery" id="parseQuery" title="Edit your query in the querybuilder" @click="parseQuery">Copy to query builder</button>
 				<label class="btn btn-sm btn-default file-input-button" for="importQuery">
@@ -155,6 +160,7 @@ import * as GapStore from '@/store/search/form/gap';
 import * as HistoryStore from '@/store/search/history';
 
 import Annotation from '@/pages/search/form/Annotation.vue';
+import ConceptSearch from '@/pages/search/form/ConceptSearch.vue';
 import Lexicon from '@/pages/search/form/Lexicon.vue';
 import SelectPicker, { Option } from '@/components/SelectPicker.vue';
 // @ts-ignore
@@ -229,6 +235,10 @@ export default Vue.extend({
 		expert: {
 			get(): string|null { return PatternStore.getState().expert; },
 			set: PatternStore.actions.expert,
+		},
+		concept: {
+			get(): string|null { return PatternStore.getState().concept; },
+			set: PatternStore.actions.concept,
 		},
 		gapValue: {
 			get: GapStore.get.gapValue,

@@ -254,6 +254,7 @@ const actions = {
 				...sharedBatchState,
 				patterns: {
 					advanced: null,
+                                        concept: null,
 					expert: null,
 					simple: null,
 					extended: {
