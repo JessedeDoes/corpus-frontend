@@ -118,7 +118,8 @@
 			</div>
 			<div :class="['tab-pane', {'active': activePattern==='concept'}]" id="concept">
 				<h3>"Concept" search (sort of)</h3>
-				<ConceptSearch/>
+				<ConceptSearch v-on:update_query="updateComplex"/>
+				Concept: {{ concept }}
 				<!--
 				<textarea id="querybox_concept" class="form-control" name="querybox" rows="7" v-model.lazy="concept"></textarea>
 				-->
@@ -304,6 +305,11 @@ export default Vue.extend({
 		copyAdvancedQuery() {
 			PatternStore.actions.expert(PatternStore.getState().advanced);
 			InterfaceStore.actions.patternMode('expert');
+		},
+
+		updateComplex(e: String) {
+			alert("Update complex:"  + e)
+			this.expert = e
 		}
 	},
 	mounted() {

@@ -135,7 +135,8 @@ const get = {
 					return (pattern || '').trim() || undefined;
 				} 
                                 case 'concept': {
-                                    return '[word="de"]'
+                                    const pattern = (state as ModuleRootStateSearch<'concept'>).formState;
+                                    return pattern || '' // '[word="de"]'
                                 }
 				default: throw new Error('Unimplemented pattern generation.');
 			}
