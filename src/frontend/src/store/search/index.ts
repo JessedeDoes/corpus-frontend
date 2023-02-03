@@ -21,7 +21,7 @@ import * as PatternModule from '@/store/search/form/patterns';
 import * as ExploreModule from '@/store/search/form/explore';
 import * as GapModule from '@/store/search/form/gap';
 import * as ConceptModule from '@/pages/search/form/concept/conceptStore' // Jesse
-
+import * as GlossModule from '@/pages/search/form/concept/glossStore' // Jesse
 // Results
 import * as ResultsManager from '@/store/search/results';
 import * as DocResultsModule from '@/store/search/results/docs';
@@ -41,6 +41,7 @@ type RootState = {
 	tagset: TagsetModule.ModuleRootState;
 	ui: UIModule.ModuleRootState;
 	concepts: ConceptModule.ModuleRootState; // Jesse
+        glosses: GlossModule.ModuleRootState; // Jesse
 }&FormManager.PartialRootState&ResultsManager.PartialRootState;
 
 const b = getStoreBuilder<RootState>();
@@ -331,6 +332,7 @@ const init = () => {
 	HistoryModule.init();
 	QueryModule.init();
 	ConceptModule.init(); // Jesse
+        GlossModule.init();
 };
 
 // Debugging helpers.
@@ -349,6 +351,7 @@ const init = () => {
 	tagset: TagsetModule,
 	ui: UIModule,
 	concepts: ConceptModule, // Jesse
+        gloss: GlossModule,
 	explore: ExploreModule,
 	form: FormManager,
 	filters: FilterModule,
