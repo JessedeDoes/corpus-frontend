@@ -312,11 +312,6 @@ export default Vue.extend({
 			//PatternStore.actions.expert(PatternStore.getState().advanced);
 			this.expert = this.concept
 			InterfaceStore.actions.patternMode('expert');
-		},
-		updateComplex(e: String) {
-			// alert("Update complex:"  + e)
-			// this.expert = e
-			this.concept = e
 		}
 	},
 	mounted() {
