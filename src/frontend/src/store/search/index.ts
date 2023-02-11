@@ -41,7 +41,7 @@ type RootState = {
 	tagset: TagsetModule.ModuleRootState;
 	ui: UIModule.ModuleRootState;
 	concepts: ConceptModule.ModuleRootState; // Jesse
-        glosses: GlossModule.ModuleRootState; // Jesse
+    glosses: GlossModule.ModuleRootState; // Jesse
 }&FormManager.PartialRootState&ResultsManager.PartialRootState;
 
 const b = getStoreBuilder<RootState>();
@@ -257,7 +257,8 @@ const actions = {
 				...sharedBatchState,
 				patterns: {
 					advanced: null,
-                                        concept: null,
+                    concept: null,
+					glosses: null,
 					expert: null,
 					simple: null,
 					extended: {

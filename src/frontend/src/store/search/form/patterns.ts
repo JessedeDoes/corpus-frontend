@@ -27,6 +27,7 @@ type ModuleRootState = {
 	},
 	advanced: string|null;
 	concept: string|null; // Jesse
+	glosses: string|null; // Jesse
 	expert: string|null;
 };
 
@@ -42,7 +43,8 @@ const defaults: ModuleRootState = {
 		splitBatch: false,
 	},
 	advanced: null,
-	concept: null, // 
+	concept: null, //
+	glosses: null,
 	expert: null,
 };
 
@@ -88,6 +90,7 @@ const actions = {
 	},
 	advanced: b.commit((state, payload: string|null) =>state.advanced = payload, 'advanced'),
 	concept: b.commit((state, payload: string|null) =>state.concept = payload, 'concept'),
+	glosses: b.commit((state, payload: string|null) =>state.glosses = payload, 'glosses'),
 	expert: b.commit((state, payload: string|null) => state.expert = payload, 'expert'),
 
 	reset: b.commit(state => {
@@ -96,6 +99,7 @@ const actions = {
 		state.advanced = null;
 		state.expert = null;
 		state.concept = null;
+		state.glosses = null;
 	}, 'reset'),
 
 	replace: b.commit((state, payload: ModuleRootState) => {
